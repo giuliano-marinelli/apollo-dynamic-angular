@@ -1,0 +1,41 @@
+{
+  "name": "apollo-dynamic-angular",
+  "version": "1.0.0",
+  "description": "Apollo Angular but Dynamic! It adds the ability to create dynamic selection sets on queries, mutations and subscriptions, based on decorated schema.",
+  "author": "Giuliano Marinelli",
+  "license": "MIT",
+  "main": "dist/index",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.1",
+    "ts-morph": "^20.0.0",
+    "apollo-dynamic": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.1",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.1.3",
+    "@angular/core": "^17.0.0",
+    "@apollo/client": "^3.9.5",
+    "apollo-angular": "^6.0.0",
+    "graphql": "^16.8.1"
+  },
+  "peerDependencies": {
+    "graphql": ">=16.8.1",
+    "@angular/core": ">=17.0.0",
+    "@apollo/client": ">=3.9.5",
+    "apollo-angular": ">=6.0.0"
+  },
+  "homepage": "https://github.com/giuliano-marinelli/apollo-dynamic-angular#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giuliano-marinelli/apollo-dynamic-angular"
+  }
+}
