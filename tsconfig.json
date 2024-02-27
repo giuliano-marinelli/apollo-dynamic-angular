@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2022",
     "module": "commonjs",
-    "lib": ["es2022", "es7", "es6", "dom"],
+    "lib": ["es2022", "es6", "dom"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -16,5 +16,13 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["lib/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "angularCompilerOptions": {
+    "enableResourceInlining": true,
+    "fullTemplateTypeCheck": true,
+    "skipTemplateCodegen": true,
+    "strictInjectionParameters": true,
+    "strictMetadataEmit": true
+  }
 }
