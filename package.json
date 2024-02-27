@@ -1,6 +1,6 @@
 {
   "name": "apollo-dynamic-angular",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Apollo Angular but Dynamic! It adds the ability to create dynamic selection sets on queries, mutations and subscriptions, based on decorated schema.",
   "author": "Giuliano Marinelli",
   "license": "MIT",

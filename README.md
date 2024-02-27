@@ -17,7 +17,7 @@ $ npm install apollo-dynamic apollo-angular @apollo/client graphql
 
 ### Decorators
 
-With this library you can use the `@SelectionType` and `@SelectionField` from [`apollo-dynamic`](https://github.com/giuliano-marinelli/apollo-dynamic):
+With this library you have to use the `@SelectionType` and `@SelectionField` from [`apollo-dynamic`](https://github.com/giuliano-marinelli/apollo-dynamic) for decorate your entities interfaces and allow the selection set generation:
 
 ```typescript
 import { SelectionType, SelectionField } from 'apollo-dynamic'
@@ -96,16 +96,34 @@ const GET_PERSONS = gql`
 ```
 
 ```typescript
-this.apollo
-  .query({
-    query: select(GET_PERSONS, { relations: { profile: true } })
-  })
-  .subscribe();
+import { select } from 'apollo-dynamic';
+import { Apollo } from 'apollo-angular';
+
+@Component({
+  // ...
+})
+export class ListPersons implements OnInit {
+  // inject angular-apollo
+  constructor(public apollo: Apollo);
+
+  ngOnInit() {
+    // use it with the "select" function
+    this.apollo
+      .query({
+        query: select(GET_PERSONS, { relations: { profile: true } })
+      })
+      .subscribe(/*...*/);
+  }
+}
 ```
 
-Or better, with the new approach:
+**Or better**, with the new approach of apollo-angular:
 
 ```typescript
+import { gql } from 'apollo-angular';
+import { DynamicQuery } from 'apollo-dynamic-angular';
+
+// use "Dynamic" version of Query, Mutation or Subscription
 @Injectable({ providedIn: 'root' })
 export class FindPersons extends DynamicQuery<{ persons: Person[] }> {
   override document = gql`
@@ -119,35 +137,39 @@ export class FindPersons extends DynamicQuery<{ persons: Person[] }> {
 ```
 
 ```typescript
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-// import a service
-import { FindPersons, Person } from './persons.entity';
+import { FindPersons, Person } from './person.entity';
 
 @Component({
   // ...
 })
 export class ListPersons implements OnInit {
-  persons: Observable<Person[]>;
+  persons: Person[];
 
   // inject it
   constructor(private findPersons: FindPersons) {}
 
   ngOnInit() {
-    // use it!
+    // use it
     this.persons = this.findPersons({ relations: { profile: true } })
       .fetch()
-      .valueChanges.pipe(map(({ data }) => data.persons));
+      .subscribe({
+        next: ({ data }: any) => {
+          persons = data.persons;
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
   }
 }
 ```
 
-Same apply for Mutations and Subscriptions.
+Same apply for **Mutations** and **Subscriptions**.
 
 ---
 
-### Please consider reading the [`apollo-dynamic`](https://github.com/giuliano-marinelli/apollo-dynamic#readme) usage guide for more information.
+### Please consider reading the [`apollo-dynamic`](https://github.com/giuliano-marinelli/apollo-dynamic#readme) and [`apollo-angular`](https://github.com/kamilkisiela/apollo-angular#readme) usage guides for more information.
 
 ## Stay in touch
 
