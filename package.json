@@ -1,35 +1,35 @@
 {
   "name": "apollo-dynamic-angular",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Apollo Angular but Dynamic! It adds the ability to create dynamic selection sets on queries, mutations and subscriptions, based on decorated schema.",
   "author": "Giuliano Marinelli",
   "license": "MIT",
-  "main": "dist/index",
-  "files": [
-    "/dist"
-  ],
+  "module": "dist/fesm2020/ngApolloDynamic.mjs",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && ng-packagr",
-    "prepublish": "npm run build"
+    "build": "rimraf dist && ng-packagr -p ng-package.json",
+    "pack": "npm run build && cd dist && npm pack --pack-destination=..",
+    "publish": "npm run build && cd dist && npm publish"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular-devkit/core": "^17.0.0",
     "@angular-devkit/schematics": "^17.0.0",
-    "@angular/core": "^17.0.0",
     "@angular/compiler": "^17.0.0",
     "@angular/compiler-cli": "^17.0.0",
+    "@angular/core": "^17.0.0",
     "@apollo/client": "^3.9.5",
     "@types/node": "^20.3.1",
     "apollo-angular": "^6.0.0",
     "apollo-dynamic": "^1.0.2",
+    "cp": "^0.2.0",
     "graphql": "^16.8.1",
     "ng-packagr": "^17.2.0",
     "rimraf": "^5.0.5",
-    "typescript": "^5.2.0",
     "rxjs": "^7.0.0",
-    "ts-morph": "^20.0.0"
+    "ts-morph": "^20.0.0",
+    "typescript": "^5.2.0"
   },
   "peerDependencies": {
     "@angular/core": ">=17.0.0",

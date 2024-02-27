@@ -10,7 +10,7 @@ This library is a wrapper of [`apollo-dynamic`](https://github.com/giuliano-mari
 $ npm install apollo-dynamic-angular
 
 # dependencies
-$ npm install apollo-angular @apollo/client graphql
+$ npm install apollo-dynamic apollo-angular @apollo/client graphql
 ```
 
 ## Usage
