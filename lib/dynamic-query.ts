@@ -3,14 +3,12 @@ import { Injectable } from '@angular/core';
 import type { ApolloQueryResult, OperationVariables, TypedDocumentNode } from '@apollo/client/core';
 
 import { SelectionOptions, select } from 'apollo-dynamic';
-import { Apollo } from 'apollo-angular';
-import { QueryRef } from 'apollo-angular/query-ref';
-import type { EmptyObject, QueryOptionsAlone, WatchQueryOptionsAlone } from 'apollo-angular/types';
+import { Apollo, QueryOptionsAlone, QueryRef, WatchQueryOptionsAlone } from 'apollo-angular';
 import type { DocumentNode } from 'graphql';
 import type { Observable } from 'rxjs';
 
 @Injectable()
-export class DynamicQuery<T = {}, V extends OperationVariables = EmptyObject> extends Function {
+export class DynamicQuery<T = {}, V extends OperationVariables = { [key: string]: any }> extends Function {
   public document: DocumentNode | TypedDocumentNode<T, V> = null as any;
   public client = 'default';
   public selectionOptions: SelectionOptions = {};

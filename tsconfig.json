@@ -3,6 +3,7 @@
     "target": "es2022",
     "module": "commonjs",
     "lib": ["es2022", "es6", "dom"],
+    "types": ["node"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

@@ -4,12 +4,12 @@ import type { TypedDocumentNode } from '@apollo/client/core';
 
 import { SelectionOptions, select } from 'apollo-dynamic';
 import { Apollo } from 'apollo-angular';
-import type { EmptyObject, MutationOptionsAlone, MutationResult } from 'apollo-angular/types';
+import type { MutationOptionsAlone, MutationResult } from 'apollo-angular';
 import type { DocumentNode } from 'graphql';
 import type { Observable } from 'rxjs';
 
 @Injectable()
-export class DynamicMutation<T = {}, V = EmptyObject> extends Function {
+export class DynamicMutation<T = {}, V = { [key: string]: any }> extends Function {
   public document: DocumentNode | TypedDocumentNode<T, V> = null as any;
   public client = 'default';
   public selectionOptions: SelectionOptions = {};

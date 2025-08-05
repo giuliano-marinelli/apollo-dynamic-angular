@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
 
-import type { TypedDocumentNode } from '@apollo/client/core';
+import type { TypedDocumentNode, FetchResult } from '@apollo/client/core';
 
 import { SelectionOptions, select } from 'apollo-dynamic';
-import { Apollo } from 'apollo-angular';
-import {
-  EmptyObject,
-  ExtraSubscriptionOptions,
-  SubscriptionOptionsAlone,
-  SubscriptionResult
-} from 'apollo-angular/types';
+import { Apollo, SubscriptionOptionsAlone } from 'apollo-angular';
+import { ExtraSubscriptionOptions } from 'apollo-angular';
 import type { DocumentNode } from 'graphql';
 import type { Observable } from 'rxjs';
 
 @Injectable()
-export class DynamicSubscription<T = any, V = EmptyObject> extends Function {
+export class DynamicSubscription<T = any, V = { [key: string]: any }> extends Function {
   public document: DocumentNode | TypedDocumentNode<T, V> = null as any;
   public client = 'default';
   public selectionOptions: SelectionOptions = {};
@@ -36,7 +31,7 @@ export class DynamicSubscription<T = any, V = EmptyObject> extends Function {
     variables?: V,
     options?: SubscriptionOptionsAlone<V, T>,
     extra?: ExtraSubscriptionOptions
-  ): Observable<SubscriptionResult<T>> {
+  ): Observable<FetchResult<T>> {
     return this.apollo.use(this.client).subscribe<T, V>(
       {
         ...options,
